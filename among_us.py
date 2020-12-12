@@ -50,7 +50,7 @@ def Reset(label):
 
 
 # Display next image.
-def next_img():
+def next_img(event):
 	img = ImageTk.PhotoImage(Image.open(next(imgs)).resize((1280, 720), Image.ANTIALIAS))
 	maps_label.img = img
 	maps_label["image"] = img
@@ -139,14 +139,13 @@ yellow2.pack(anchor="w")
 
 
 # Create maps frame and change button.
-imgs = ["Polus.jpg", "The Skeld.jpg"]  # "Mira HQ".jpg
+imgs = ["Mira HQ.jpg", "Polus.jpg", "The Skeld.jpg"]
 imgs = cycle(imgs)
 maps = tk.Frame(root)
 maps.grid(row=0, column=2, rowspan=2, sticky="ew")
 maps_label = tk.Label(maps)
 maps_label.pack()
-btn = tk.Button(maps, text="Change map", command=next_img)
-btn.pack(pady=20)
-next_img()
+root.bind("<Button-2>", next_img)
+next_img("<Button-2>")
 
 root.mainloop()
