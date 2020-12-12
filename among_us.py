@@ -1,26 +1,25 @@
 from itertools import cycle
-from tkinter import *
 from PIL import ImageTk, Image
+import tkinter as tk
 
-counter = -1
-num = 0
+# Set the counter and running state/bool.
+counter = 0
 running = False
 
 
+# Set the stopwatch time.
 def counter_label(label):
 	def count():
 		if running:
 			global counter
-			if counter == -1:
-				display = "Starting..."
-			else:
-				display = str(counter)
+			display = str(counter)
 			label['text'] = display
 			label.after(1000, count)
 			counter += 1
 	count()
 
 
+# Start the counter.
 def Start(label):
 	global running
 	running = True
@@ -30,6 +29,7 @@ def Start(label):
 	reset['state'] = 'normal'
 
 
+# Stop the counter.
 def Stop():
 	global running
 	start['state'] = 'normal'
@@ -38,73 +38,114 @@ def Stop():
 	running = False
 
 
+# Reset the counter.
 def Reset(label):
 	global counter
-	counter = -1
+	counter = 1
 	if not running:
 		reset['state'] = 'disabled'
 		label['text'] = 'Stopwatch'
 	else:
-		label['text'] = 'Starting...'
+		label['text'] = '0'
 
 
+# Display next image.
 def next_img():
-	img = ImageTk.PhotoImage(Image.open(next(imgs)).resize((1080, 608), Image.ANTIALIAS))
+	img = ImageTk.PhotoImage(Image.open(next(imgs)).resize((1280, 720), Image.ANTIALIAS))
 	maps_label.img = img
 	maps_label["image"] = img
 
 
-root = Tk()
+# Create root window.
+root = tk.Tk()
 root.title("Among Us Helper")
+for row in range(2):
+	root.grid_rowconfigure(row, weight=1)
+for col in range(2):
+	root.grid_columnconfigure(col, weight=1)
 
-
-stopwatch = Frame(root)
-stopwatch.grid(row=0, column=0, padx=20, pady=50)
-stopwatch_label = Label(stopwatch, text="Stopwatch", fg="black", font="Verdana 30 bold")
+# Create stopwatch frame and buttons.
+stopwatch = tk.Frame(root)
+stopwatch.grid(row=0, column=0, sticky="ew", columnspan=2)
+stopwatch_label = tk.Label(stopwatch, text="Stopwatch", font="Arial 20 bold")
 stopwatch_label.pack()
-start = Button(stopwatch, text='Start', width=15, command=lambda: Start(stopwatch_label))
+start = tk.Button(stopwatch, text='Start', width=15, command=lambda: Start(stopwatch_label))
 start.pack()
-stop = Button(stopwatch, text='Stop', width=15, state='disabled', command=Stop)
+stop = tk.Button(stopwatch, text='Stop', width=15, state='disabled', command=Stop)
 stop.pack()
-reset = Button(stopwatch, text='Reset', width=15, state='disabled', command=lambda: Reset(stopwatch_label))
+reset = tk.Button(stopwatch, text='Reset', width=15, state='disabled', command=lambda: Reset(stopwatch_label))
 reset.pack()
 
-checkboxes = Frame(root)
-checkboxes.grid(row=1, column=0, padx=20)
-checkboxes_label = Label(checkboxes, text="Sus/Inno List", fg="black", font="Verdana 30 bold")
-checkboxes_label.pack()
-black = Checkbutton(checkboxes, text="black")
-black.pack()
-blue = Checkbutton(checkboxes, text="blue")
-blue.pack()
-brown = Checkbutton(checkboxes, text="brown")
-brown.pack()
-cyan = Checkbutton(checkboxes, text="cyan")
-cyan.pack()
-green = Checkbutton(checkboxes, text="green")
-green.pack()
-lime = Checkbutton(checkboxes, text="lime")
-lime.pack()
-orange = Checkbutton(checkboxes, text="orange")
-orange.pack()
-pink = Checkbutton(checkboxes, text="pink")
-pink.pack()
-purple = Checkbutton(checkboxes, text="purple")
-purple.pack()
-red = Checkbutton(checkboxes, text="red")
-red.pack()
-white = Checkbutton(checkboxes, text="white")
-white.pack()
-yellow = Checkbutton(checkboxes, text="yellow")
-yellow.pack()
 
+# Create suslist frame and checkboxes.
+suslist = tk.Frame(root)
+suslist.grid(row=1, column=0, padx=30, sticky="ew")
+suslist_label = tk.Label(suslist, text="Sus", font="Arial 20 bold")
+suslist_label.pack()
+black = tk.Checkbutton(suslist, text="black")
+black.pack(anchor="w")
+blue = tk.Checkbutton(suslist, text="blue")
+blue.pack(anchor="w")
+brown = tk.Checkbutton(suslist, text="brown")
+brown.pack(anchor="w")
+cyan = tk.Checkbutton(suslist, text="cyan")
+cyan.pack(anchor="w")
+green = tk.Checkbutton(suslist, text="green")
+green.pack(anchor="w")
+lime = tk.Checkbutton(suslist, text="lime")
+lime.pack(anchor="w")
+orange = tk.Checkbutton(suslist, text="orange")
+orange.pack(anchor="w")
+pink = tk.Checkbutton(suslist, text="pink")
+pink.pack(anchor="w")
+purple = tk.Checkbutton(suslist, text="purple")
+purple.pack(anchor="w")
+red = tk.Checkbutton(suslist, text="red")
+red.pack(anchor="w")
+white = tk.Checkbutton(suslist, text="white")
+white.pack(anchor="w")
+yellow = tk.Checkbutton(suslist, text="yellow")
+yellow.pack(anchor="w")
+
+# Create innolist and checkboxes
+innolist = tk.Frame(root)
+innolist.grid(row=1, column=1, padx=30, sticky="ew")
+innolist_label = tk.Label(innolist, text="Inno", font="Arial 20 bold")
+innolist_label.pack()
+black2 = tk.Checkbutton(innolist, text="black")
+black2.pack(anchor="w")
+blue2 = tk.Checkbutton(innolist, text="blue")
+blue2.pack(anchor="w")
+brown2 = tk.Checkbutton(innolist, text="brown")
+brown2.pack(anchor="w")
+cyan2 = tk.Checkbutton(innolist, text="cyan")
+cyan2.pack(anchor="w")
+green2 = tk.Checkbutton(innolist, text="green")
+green2.pack(anchor="w")
+lime2 = tk.Checkbutton(innolist, text="lime")
+lime2.pack(anchor="w")
+orange2 = tk.Checkbutton(innolist, text="orange")
+orange2.pack(anchor="w")
+pink2 = tk.Checkbutton(innolist, text="pink")
+pink2.pack(anchor="w")
+purple2 = tk.Checkbutton(innolist, text="purple")
+purple2.pack(anchor="w")
+red2 = tk.Checkbutton(innolist, text="red")
+red2.pack(anchor="w")
+white2 = tk.Checkbutton(innolist, text="white")
+white2.pack(anchor="w")
+yellow2 = tk.Checkbutton(innolist, text="yellow")
+yellow2.pack(anchor="w")
+
+
+# Create maps frame and change button.
 imgs = ["Polus.jpg", "The Skeld.jpg"]  # "Mira HQ".jpg
 imgs = cycle(imgs)
-maps = Frame(root)
-maps.grid(row=0, column=1, rowspan=2, padx=50, pady=50)
-maps_label = Label(maps, text="Map", fg="black", font="Verdana 30 bold")
+maps = tk.Frame(root)
+maps.grid(row=0, column=2, rowspan=2, sticky="ew")
+maps_label = tk.Label(maps)
 maps_label.pack()
-btn = Button(maps, text="Change map", command=next_img)
+btn = tk.Button(maps, text="Change map", command=next_img)
 btn.pack(pady=20)
 next_img()
 
