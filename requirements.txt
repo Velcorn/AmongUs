@@ -7,6 +7,7 @@ lazy-object-proxy==1.4.3
 mccabe==0.6.1
 pefile==2019.4.18
 Pillow==8.0.1
+pyinstaller==4.1
 pyinstaller-hooks-contrib==2020.10
 pylint==2.6.0
 pywin32-ctypes==0.2.0
