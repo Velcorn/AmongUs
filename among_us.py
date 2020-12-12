@@ -205,7 +205,6 @@ notepad_label.pack()
 notes = tk.Text(notepad, height=15, width=25, bg="#424242", fg="#ffffff", padx=10)
 notes.pack()
 
-
 # Create maps frame and change button.
 imgs = ["Mira HQ.jpg", "Polus.jpg", "The Skeld.jpg"]
 imgs = cycle(imgs)
