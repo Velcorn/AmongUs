@@ -1,6 +1,8 @@
 from itertools import cycle
 from PIL import ImageTk, Image
 import tkinter as tk
+import tkinter.ttk as ttk
+from ttkthemes import ThemedStyle
 
 # Set the counter and running state/bool.
 counter = 0
@@ -50,102 +52,178 @@ def Reset(label):
 
 
 # Display next image.
-def next_img(event):
+def change_map():
 	img = ImageTk.PhotoImage(Image.open(next(imgs)).resize((1280, 720), Image.ANTIALIAS))
 	maps_label.img = img
 	maps_label["image"] = img
 
 
+# Untick all checkboxes.
+def reset_cbs():
+	var1.set(False)
+	var2.set(False)
+	var3.set(False)
+	var4.set(False)
+	var5.set(False)
+	var6.set(False)
+	var7.set(False)
+	var8.set(False)
+	var9.set(False)
+	var10.set(False)
+	var11.set(False)
+	var12.set(False)
+	var13.set(False)
+	var14.set(False)
+	var15.set(False)
+	var16.set(False)
+	var17.set(False)
+	var18.set(False)
+	var19.set(False)
+	var20.set(False)
+	var21.set(False)
+	var22.set(False)
+	var23.set(False)
+	var24.set(False)
+
+
 # Create root window.
 root = tk.Tk()
 root.title("Among Us Helper")
-for row in range(2):
+root.configure(bg="#424242")
+style = ThemedStyle(root)
+style.set_theme("black")
+'''root.bind("<Button-3>", next_img)
+root.bind("<Button-2>", reset_cbs)'''
+for row in range(3):
 	root.grid_rowconfigure(row, weight=1)
-for col in range(2):
+for col in range(3):
 	root.grid_columnconfigure(col, weight=1)
 
 # Create stopwatch frame and buttons.
-stopwatch = tk.Frame(root)
+stopwatch = ttk.Frame(root)
 stopwatch.grid(row=0, column=0, sticky="ew", columnspan=2)
-stopwatch_label = tk.Label(stopwatch, text="Stopwatch", font="Arial 20 bold")
+stopwatch_label = ttk.Label(stopwatch, text="Stopwatch", font="Arial 20 bold")
 stopwatch_label.pack()
-start = tk.Button(stopwatch, text='Start', width=15, command=lambda: Start(stopwatch_label))
+start = ttk.Button(stopwatch, text='Start', width=15, command=lambda: Start(stopwatch_label))
 start.pack()
-stop = tk.Button(stopwatch, text='Stop', width=15, state='disabled', command=Stop)
+stop = ttk.Button(stopwatch, text='Stop', width=15, state='disabled', command=Stop)
 stop.pack()
-reset = tk.Button(stopwatch, text='Reset', width=15, state='disabled', command=lambda: Reset(stopwatch_label))
+reset = ttk.Button(stopwatch, text='Reset', width=15, state='disabled', command=lambda: Reset(stopwatch_label))
 reset.pack()
 
+# Create variables for the checkboxes.
+var1 = tk.BooleanVar()
+var2 = tk.BooleanVar()
+var3 = tk.BooleanVar()
+var4 = tk.BooleanVar()
+var5 = tk.BooleanVar()
+var6 = tk.BooleanVar()
+var7 = tk.BooleanVar()
+var8 = tk.BooleanVar()
+var9 = tk.BooleanVar()
+var10 = tk.BooleanVar()
+var11 = tk.BooleanVar()
+var12 = tk.BooleanVar()
+var13 = tk.BooleanVar()
+var14 = tk.BooleanVar()
+var15 = tk.BooleanVar()
+var16 = tk.BooleanVar()
+var17 = tk.BooleanVar()
+var18 = tk.BooleanVar()
+var19 = tk.BooleanVar()
+var20 = tk.BooleanVar()
+var21 = tk.BooleanVar()
+var22 = tk.BooleanVar()
+var23 = tk.BooleanVar()
+var24 = tk.BooleanVar()
 
 # Create suslist frame and checkboxes.
-suslist = tk.Frame(root)
+suslist = ttk.Frame(root)
 suslist.grid(row=1, column=0, padx=30, sticky="ew")
-suslist_label = tk.Label(suslist, text="Sus", font="Arial 20 bold")
+suslist_label = ttk.Label(suslist, text="Sus", font="Arial 20 bold")
 suslist_label.pack()
-black = tk.Checkbutton(suslist, text="black")
+black = ttk.Checkbutton(suslist, text="black", variable=var1)
 black.pack(anchor="w")
-blue = tk.Checkbutton(suslist, text="blue")
+blue = ttk.Checkbutton(suslist, text="blue", variable=var2)
 blue.pack(anchor="w")
-brown = tk.Checkbutton(suslist, text="brown")
+brown = ttk.Checkbutton(suslist, text="brown", variable=var3)
 brown.pack(anchor="w")
-cyan = tk.Checkbutton(suslist, text="cyan")
+cyan = ttk.Checkbutton(suslist, text="cyan", variable=var4)
 cyan.pack(anchor="w")
-green = tk.Checkbutton(suslist, text="green")
+green = ttk.Checkbutton(suslist, text="green", variable=var5)
 green.pack(anchor="w")
-lime = tk.Checkbutton(suslist, text="lime")
+lime = ttk.Checkbutton(suslist, text="lime", variable=var6)
 lime.pack(anchor="w")
-orange = tk.Checkbutton(suslist, text="orange")
+orange = ttk.Checkbutton(suslist, text="orange", variable=var7)
 orange.pack(anchor="w")
-pink = tk.Checkbutton(suslist, text="pink")
+pink = ttk.Checkbutton(suslist, text="pink", variable=var8)
 pink.pack(anchor="w")
-purple = tk.Checkbutton(suslist, text="purple")
+purple = ttk.Checkbutton(suslist, text="purple", variable=var9)
 purple.pack(anchor="w")
-red = tk.Checkbutton(suslist, text="red")
+red = ttk.Checkbutton(suslist, text="red", variable=var10)
 red.pack(anchor="w")
-white = tk.Checkbutton(suslist, text="white")
+white = ttk.Checkbutton(suslist, text="white", variable=var11)
 white.pack(anchor="w")
-yellow = tk.Checkbutton(suslist, text="yellow")
+yellow = ttk.Checkbutton(suslist, text="yellow", variable=var12)
 yellow.pack(anchor="w")
 
 # Create innolist and checkboxes
-innolist = tk.Frame(root)
+innolist = ttk.Frame(root)
 innolist.grid(row=1, column=1, padx=30, sticky="ew")
-innolist_label = tk.Label(innolist, text="Inno", font="Arial 20 bold")
+innolist_label = ttk.Label(innolist, text="Inno", font="Arial 20 bold")
 innolist_label.pack()
-black2 = tk.Checkbutton(innolist, text="black")
+black2 = ttk.Checkbutton(innolist, text="black", variable=var13)
 black2.pack(anchor="w")
-blue2 = tk.Checkbutton(innolist, text="blue")
+blue2 = ttk.Checkbutton(innolist, text="blue", variable=var14)
 blue2.pack(anchor="w")
-brown2 = tk.Checkbutton(innolist, text="brown")
+brown2 = ttk.Checkbutton(innolist, text="brown", variable=var15)
 brown2.pack(anchor="w")
-cyan2 = tk.Checkbutton(innolist, text="cyan")
+cyan2 = ttk.Checkbutton(innolist, text="cyan", variable=var16)
 cyan2.pack(anchor="w")
-green2 = tk.Checkbutton(innolist, text="green")
+green2 = ttk.Checkbutton(innolist, text="green", variable=var17)
 green2.pack(anchor="w")
-lime2 = tk.Checkbutton(innolist, text="lime")
+lime2 = ttk.Checkbutton(innolist, text="lime", variable=var18)
 lime2.pack(anchor="w")
-orange2 = tk.Checkbutton(innolist, text="orange")
+orange2 = ttk.Checkbutton(innolist, text="orange", variable=var19)
 orange2.pack(anchor="w")
-pink2 = tk.Checkbutton(innolist, text="pink")
+pink2 = ttk.Checkbutton(innolist, text="pink", variable=var20)
 pink2.pack(anchor="w")
-purple2 = tk.Checkbutton(innolist, text="purple")
+purple2 = ttk.Checkbutton(innolist, text="purple", variable=var21)
 purple2.pack(anchor="w")
-red2 = tk.Checkbutton(innolist, text="red")
+red2 = ttk.Checkbutton(innolist, text="red", variable=var22)
 red2.pack(anchor="w")
-white2 = tk.Checkbutton(innolist, text="white")
+white2 = ttk.Checkbutton(innolist, text="white", variable=var23)
 white2.pack(anchor="w")
-yellow2 = tk.Checkbutton(innolist, text="yellow")
+yellow2 = ttk.Checkbutton(innolist, text="yellow", variable=var24)
 yellow2.pack(anchor="w")
+
+# Create notepad box.
+notepad = ttk.Frame(root)
+notepad.grid(row=3, column=0, columnspan=2)
+notepad_label = ttk.Label(notepad, text="Notes", font="Arial 20 bold")
+notepad_label.pack()
+notes = tk.Text(notepad, height=15, width=25, bg="#424242", fg="#ffffff", padx=10)
+notes.pack()
 
 
 # Create maps frame and change button.
 imgs = ["Mira HQ.jpg", "Polus.jpg", "The Skeld.jpg"]
 imgs = cycle(imgs)
-maps = tk.Frame(root)
-maps.grid(row=0, column=2, rowspan=2, sticky="ew")
-maps_label = tk.Label(maps)
+maps = ttk.Frame(root)
+maps.grid(row=0, column=2, rowspan=4, sticky="ew")
+maps_label = ttk.Label(maps)
 maps_label.pack()
-root.bind("<Button-2>", next_img)
-next_img("<Button-2>")
+change_map()
+
+# Create reset and change map button.
+rb_zone = ttk.Frame(root)
+rb_zone.grid(row=4, column=0, columnspan=2, pady=10)
+reset_button = ttk.Button(rb_zone, text="Reset Lists", width=15, command=reset_cbs)
+reset_button.pack()
+
+cmb_zone = ttk.Frame(root)
+cmb_zone.grid(row=4, column=2, pady=10)
+map_button = ttk.Button(cmb_zone, text="Change Map", width=15, command=change_map)
+map_button.pack()
 
 root.mainloop()
