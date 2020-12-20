@@ -197,32 +197,21 @@ white2.pack(anchor="w")
 yellow2 = ttk.Checkbutton(innolist, text="yellow", variable=var24)
 yellow2.pack(anchor="w")
 
-# Create notepad box.
-notepad = ttk.Frame(root)
-notepad.grid(row=3, column=0, columnspan=2)
-notepad_label = ttk.Label(notepad, text="Notes", font="Arial 20 bold")
-notepad_label.pack()
-notes = tk.Text(notepad, height=15, width=25, bg="#424242", fg="#ffffff", padx=10)
-notes.pack()
-
-# Create maps frame and change button.
-imgs = ["Mira HQ.jpg", "Polus.jpg", "The Skeld.jpg"]
+# Create maps frame.
+imgs = ["Polus.jpg", "The Skeld.jpg"]  # "Mira HQ.jpg",
 imgs = cycle(imgs)
 maps = ttk.Frame(root)
-maps.grid(row=0, column=2, rowspan=4, sticky="ew")
+maps.grid(row=0, column=2, rowspan=3, sticky="ew")
 maps_label = ttk.Label(maps)
 maps_label.pack()
 change_map()
 
 # Create reset and change map button.
-rb_zone = ttk.Frame(root)
-rb_zone.grid(row=4, column=0, columnspan=2, pady=10)
-reset_button = ttk.Button(rb_zone, text="Reset Lists", width=15, command=reset_cbs)
+button_zone = ttk.Frame(root)
+button_zone.grid(row=2, column=0, columnspan=2)
+reset_button = ttk.Button(button_zone, text="Reset Lists", width=15, command=reset_cbs)
 reset_button.pack()
-
-cmb_zone = ttk.Frame(root)
-cmb_zone.grid(row=4, column=2, pady=10)
-map_button = ttk.Button(cmb_zone, text="Change Map", width=15, command=change_map)
+map_button = ttk.Button(button_zone, text="Change Map", width=15, command=change_map)
 map_button.pack()
 
 root.mainloop()
